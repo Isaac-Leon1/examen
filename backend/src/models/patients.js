@@ -26,5 +26,9 @@ export const patients = {
   async updatePatient (id, patient) {
     const result = await patientCollection.updateOne({ _id: id }, { $set: patient })
     return result
+  },
+  async getUserbyNameandLastName (name, lastName) {
+    const patient = await patientCollection.findOne({ name, lastName })
+    return patient
   }
 }

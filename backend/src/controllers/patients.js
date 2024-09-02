@@ -22,9 +22,9 @@ export const createPatient = async (req, res) => {
     if (patient instanceof z.ZodError) {
       return res.status(400).json({ errors: patient.errors })
     }
-    const customerExist = await patients.getUserbyCI(patient.id)
-    if (customerExist) {
-      return res.status(400).json({ msg: 'El cliente ya existe' })
+    const patientExist = await patients.getUserbyNameandLastName({ name: patient.name, lastName: patient.lastName })
+    if (patientExist) {
+      return res.status(400).json({ msg: 'El paciente ya existe' })
     }
     const newPatient = await patients.createPatient(patient)
     return res.status(200).json(newPatient)
