@@ -1,10 +1,15 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Login from "./pages/Login";
 function App() {
-
   return (
     <>
-    <h1 className='text-6xl text-center'>EXAMEN</h1>
+      <BrowserRouter>
+        <Routes>
+          <Route path={"login"} element={<Login />} />
+        </Routes>
+      </BrowserRouter>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
