@@ -1,18 +1,13 @@
 import express from 'express'
-import dotenv from 'dotenv'
-import cors from 'cors';
+import cors from 'cors'
 
-const app = express()
-dotenv.config()
-
-app.set('port',process.env.port || 3000)
-app.use(cors())
+export const app = express()
 
 app.use(express.json())
+app.use(cors())
 
-// Rutas 
-app.get('/',(req,res)=>{
-    res.send("Examen API")
+app.get('/', (req, res) => {
+  res.send('API para gestion de citas medicas')
 })
 
-export default  app
+// Routes
