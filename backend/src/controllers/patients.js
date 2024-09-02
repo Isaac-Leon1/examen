@@ -54,7 +54,7 @@ export const updatePatient = async (req, res) => {
   }
 }
 
-export const deletePatient = async (req, res) => {
+export const deletePatientbyId = async (req, res) => {
   try {
     const id = req.params.id
     console.log(id)
@@ -66,7 +66,7 @@ export const deletePatient = async (req, res) => {
   }
 }
 
-export const getPatientById = async (req, res) => {
+export const getPatientByaId = async (req, res) => {
   try {
     const id = req.params.id
     console.log(id)
