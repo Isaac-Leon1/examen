@@ -1,14 +1,16 @@
 import mongoose from 'mongoose'
+import { config } from 'dotenv'
 
-mongoose.set('strictQuery', true)
+config()
 
-const connection = async()=>{
-    try {
-        const {connection} = await mongoose.connect(process.env.MONGODB_URI)
-        console.log(`Database is connected on ${connection.host} - ${connection.port}`)
-    } catch (error) {
-        console.log(error);
-    }
+const uri = process.env.MONGO_URI_LOCAL
+export const connectDB = async () => {
+  try {
+    await mongoose.connect(uri)
+    console.log('Database connected')
+    const client = mongoose.connection.getClient()
+    return client.db('RentaCarros')
+  } catch (error) {
+    console.log(error)
+  }
 }
-
-export default  connection
