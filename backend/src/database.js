@@ -9,7 +9,7 @@ export const connectDB = async () => {
     await mongoose.connect(uri)
     console.log('Database connected')
     const client = mongoose.connection.getClient()
-    return client.db('RentaCarros')
+    return client.db('Medilab')
   } catch (error) {
     console.log(error)
   }
