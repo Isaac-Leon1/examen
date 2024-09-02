@@ -2,7 +2,7 @@ import { patientCollection } from '../index.js'
 import { Patient } from '../schemas/patients/patient.js'
 
 export const patients = {
-  async getPatients () {
+  async getAllPatients () {
     const patients = await patientCollection.find({}).toArray()
     return patients
   },
@@ -23,8 +23,8 @@ export const patients = {
     const result = await patientCollection.deleteOne({ _id: id })
     return result
   },
-  async updatePatient (ci, patient) {
-    const result = await patientCollection.updateOne({ ci }, { $set: patient })
+  async updatePatient (id, patient) {
+    const result = await patientCollection.updateOne({ _id: id }, { $set: patient })
     return result
   }
 }

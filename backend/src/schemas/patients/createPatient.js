@@ -67,7 +67,7 @@ const createPatientSchema = z.object({
 
 })
 
-export const validateCreateCustomer = (data) => {
+export const validateCreatePatient = (data) => {
   const isValid = createPatientSchema.safeParse(data)
   if (!isValid.success) {
     return isValid.error
