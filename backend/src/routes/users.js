@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { login } from '../controllers/user.js'
+import { login } from '../controllers/users.js'
 
 export const router = Router()
 router.get('/', (req, res) => {

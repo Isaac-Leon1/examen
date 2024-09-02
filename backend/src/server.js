@@ -1,6 +1,6 @@
 import express from 'express'
 import cors from 'cors'
-import { routes } from './routes/index.js'
+import { router } from './routes/users.js'
 
 export const app = express()
 
@@ -12,4 +12,4 @@ app.get('/', (req, res) => {
 })
 
 // Routes
-app.use('/users', routes)
+app.use('/users', router)
