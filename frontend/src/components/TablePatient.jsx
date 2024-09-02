@@ -17,6 +17,20 @@ export default function TablePatient({setOpen, idPacient, setIdPacient}) {
       console.log(error);
     }
   };
+  const deletePatient = async(id) => {
+    try {
+      const token = localStorage.getItem('token')
+      const response = await axios.delete(`${import.meta.env.VITE_BACKEND_URL}patients/${id}`,{
+        headers:{
+        Authorization: `Bearer ${token}`
+      }});
+      if (response.status == 200) {
+        setPatients(patients.filter((patient) => patient._id !== id))
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   useEffect(() => {
     getPatients();
     console.log(patients) 
@@ -63,6 +77,7 @@ export default function TablePatient({setOpen, idPacient, setIdPacient}) {
                       <a
                         href="#"
                         className="font-medium text-blue-600 hover:text-blue-800"
+                        onClick={()=>deletePatient(patient._id)}
                       >
                         Eliminar
                       </a>

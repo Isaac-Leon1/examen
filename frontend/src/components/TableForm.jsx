@@ -30,6 +30,7 @@ export default function TableForm({open, setOpen, idPacient, setIdPacient}) {
         headers:{
           Authorization: `Bearer ${token}`
       }})
+      console.log(response)
       if(response.status == 200){
         console.log(response.data)
       }
@@ -66,6 +67,9 @@ export default function TableForm({open, setOpen, idPacient, setIdPacient}) {
   useEffect(()=>{
     if(idPacient){
       getPatient(idPacient)
+      setEditMode(true)
+    }else{
+      setEditMode(false)
     }
   },[idPacient])
   return (
