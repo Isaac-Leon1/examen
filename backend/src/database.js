@@ -3,7 +3,7 @@ import { config } from 'dotenv'
 
 config()
 
-const uri = process.env.MONGO_URI_LOCAL
+const uri = process.env.MONGO_URI_ATLAS
 export const connectDB = async () => {
   try {
     await mongoose.connect(uri)
