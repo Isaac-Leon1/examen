@@ -69,7 +69,9 @@ export const deletePatient = async (req, res) => {
 export const getPatientById = async (req, res) => {
   try {
     const id = req.params.id
-    const patient = await patients.getPatientById({ _id: id })
+    console.log(id)
+    const patient = await patients.getPatientById(id)
+    console.log(patient)
     return res.status(200).json(patient)
   } catch (error) {
     console.log(error)
