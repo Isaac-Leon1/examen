@@ -1,30 +1,30 @@
 import { patientCollection } from '../index.js'
 import { Patient } from '../schemas/patients/patient.js'
 
-export const customers = {
-  async getCustomers () {
-    const customers = await patientCollection.find({}).toArray()
-    return customers
+export const patients = {
+  async getPatients () {
+    const patients = await patientCollection.find({}).toArray()
+    return patients
   },
-  async createCustomer (customer) {
+  async createPatient (patient) {
     try {
-      const newCustomer = new Patient(customer)
-      const result = await patientCollection.insertOne(newCustomer)
+      const newPatient = new Patient(patient)
+      const result = await patientCollection.insertOne(newPatient)
       return result
     } catch (error) {
       console.log(error)
     }
   },
-  async getUserbyCI (ci) {
-    const user = await patientCollection.findOne({ ci })
-    return user
+  async getPatientById (id) {
+    const patient = await patientCollection.findOne({ _id: id })
+    return patient
   },
-  async deleteCustomer (ci) {
-    const result = await patientCollection.deleteOne({ ci })
+  async deletePatient (id) {
+    const result = await patientCollection.deleteOne({ _id: id })
     return result
   },
-  async updateCustomer (ci, customer) {
-    const result = await patientCollection.updateOne({ ci }, { $set: customer })
+  async updatePatient (ci, patient) {
+    const result = await patientCollection.updateOne({ ci }, { $set: patient })
     return result
   }
 }

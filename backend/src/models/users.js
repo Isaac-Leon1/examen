@@ -1,8 +1,8 @@
 import { userCollection } from '../index.js'
 
 export const users = {
-  async login ({ email, password }) {
-    const user = await userCollection.findOne({ email, password })
+  async login ({ email }) {
+    const user = await userCollection.findOne({ email })
     return user
   }
 }

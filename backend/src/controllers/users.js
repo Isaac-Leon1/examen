@@ -3,7 +3,6 @@ import jwt from 'jsonwebtoken'
 import { config } from 'dotenv'
 import { validateLogin } from '../schemas/login.js'
 import bcrypt from 'bcrypt'
-import { userCollection } from '../index.js'
 
 config()
 
@@ -14,9 +13,13 @@ export const login = async (req, res) => {
       return res.status(400).json({ msg: 'Todos los campos son obligatorios' })
     }
 
-    const userDB = await userCollection.findOne({ email: user.email })
+    // const userDB = await userCollection.findOne({ email: user.email })
 
-    bcrypt.compare(user.password, userDB.password, (err, result) => {
+    const userLogin = await users.login({ email: user.email })
+    if (!userLogin) {
+      return res.status(400).json({ msg: 'No existe el usuario' })
+    }
+    bcrypt.compare(user.password, userLogin.password, (err, result) => {
       if (err) {
         return res.status(400).json({ msg: 'Usuario o contraseña incorrectos' })
       }
@@ -24,11 +27,6 @@ export const login = async (req, res) => {
         return res.status(400).json({ msg: 'Usuario o contraseña incorrectos' })
       }
     })
-
-    const userLogin = await users.login(user)
-    if (!userLogin) {
-      return res.status(400).json({ msg: 'Usuario o contraseña incorrectos' })
-    }
 
     const { _id, password, ...rest } = userLogin
 
