@@ -37,7 +37,7 @@ export const createPatient = async (req, res) => {
 export const updatePatient = async (req, res) => {
   try {
     const id = req.params.id
-    // console.log(ci)
+    console.log(id)
     const patient = validateUpdatePatient(req.body)
     if (patient instanceof z.ZodError) {
       return res.status(400).json({ errors: patient.errors })
@@ -57,6 +57,7 @@ export const updatePatient = async (req, res) => {
 export const deletePatient = async (req, res) => {
   try {
     const id = req.params.id
+    console.log(id)
     const result = await patients.deletePatient(id)
     return res.status(200).json(result)
   } catch (error) {
